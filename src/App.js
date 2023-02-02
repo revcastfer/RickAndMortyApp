@@ -1,25 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import Nav from './components/Nav.jsx'
+//import Card from './components/Card.jsx'
+import Cards from './components/Cards.jsx'
+//import SearchBar from './components/SearchBar.jsx'
+//import characters, { Rick } from './data.js'
+import styled from "styled-components"
+import fondorick from "./images/wallpaperbetter.jpg"
+import  {useState} from 'react';
+import {Routes,Route} from 'react-router-dom'
+import About from './components/About.jsx'
+import Detail from './components/Detail.jsx'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const Fondo=styled.div`
+ background:url(${fondorick});
+ background-Size:cover;
+ background-repeat:no-repeat;
+ background-attachment:fixed;
+ min-height:100vh
+`
+
+
+function App () {
+
+  const [characters,setCharacters]=useState([]);
+
+  function onSearch(character) {
+  
+   fetch(`https://rickandmortyapi.com/api/character/${character}`)
+      .then((response) => response.json())
+      .then((data) => {
+         if (data.name) {
+            setCharacters((oldChars) => [...oldChars, data]);
+            console.log(characters)
+         } else {
+            window.alert('No hay personajes con ese ID');
+         }
+      });
 }
 
-export default App;
+
+  return (
+    <Fondo className='App' style={{ padding: '25px' }}>
+    <Routes>
+      <Route path="/" element={<Nav onSearch={onSearch}/>} >     
+      
+     
+       <Route path="Cards" element={ <Cards characters={characters} close={setCharacters}/>} />
+       <Route path="About" element={<About/>} />
+       <Route path="Detail" element={<Detail/>} />
+      
+
+      </Route>
+      </Routes>
+    </Fondo>
+  )
+}
+
+export default App
