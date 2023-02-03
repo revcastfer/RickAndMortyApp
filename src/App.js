@@ -12,6 +12,7 @@ import About from './components/About.jsx'
 import Detail from './components/Detail.jsx'
 
 
+
 const Fondo=styled.div`
  background:url(${fondorick});
  background-Size:cover;
@@ -32,7 +33,7 @@ function App () {
       .then((data) => {
          if (data.name) {
             setCharacters((oldChars) => [...oldChars, data]);
-            console.log(characters)
+            
          } else {
             window.alert('No hay personajes con ese ID');
          }
@@ -46,9 +47,9 @@ function App () {
       <Route path="/" element={<Nav onSearch={onSearch}/>} >     
       
      
-       <Route path="Cards" element={ <Cards characters={characters} close={setCharacters}/>} />
+       <Route path="Home" element={ <Cards characters={characters} close={setCharacters}/>} />
        <Route path="About" element={<About/>} />
-       <Route path="Detail" element={<Detail/>} />
+       <Route path="detail/:detailId" element={<Detail/>}/>
       
 
       </Route>

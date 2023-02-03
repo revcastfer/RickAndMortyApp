@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { NavLink } from "react-router-dom"
 
 
 import Rickfont from '../Fonts/get_schwifty.ttf'
@@ -87,7 +88,7 @@ export default function Card(props) {
       <Fondoabajo/>
      
          <Button onClick={()=>props.onClose()} >X</Button>
-         <Nombre>{props.name}</Nombre>
+         <NavLink to={`/detail/${props.id}`} ><Nombre>{props.name}</Nombre></NavLink>
          
          <Species>{props.species}</Species>
          <Gender>{props.gender}</Gender>
