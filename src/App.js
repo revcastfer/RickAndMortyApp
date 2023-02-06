@@ -10,6 +10,7 @@ import  {useState} from 'react';
 import {Routes,Route} from 'react-router-dom'
 import About from './components/About.jsx'
 import Detail from './components/Detail.jsx'
+import Form from'./components/Form.jsx'
 
 
 
@@ -25,6 +26,7 @@ const Fondo=styled.div`
 function App () {
 
   const [characters,setCharacters]=useState([]);
+  
 
   function onSearch(character) {
   
@@ -42,18 +44,26 @@ function App () {
 
 
   return (
-    <Fondo className='App' style={{ padding: '25px' }}>
-    <Routes>
-      <Route path="/" element={<Nav onSearch={onSearch}/>} >     
-      
-     
-       <Route path="Home" element={ <Cards characters={characters} close={setCharacters}/>} />
+    <Fondo className='App' >
+    <Nav onSearch={onSearch}/>
+    
+
+
+     <Routes>
+       
+         <Route path="/" element={<Form/>} /> 
+       
+        <Route path="Home" element={<Cards characters={characters} close={setCharacters}/>} />  
+
        <Route path="About" element={<About/>} />
        <Route path="detail/:detailId" element={<Detail/>}/>
-      
+        
 
-      </Route>
       </Routes>
+
+
+
+   
     </Fondo>
   )
 }

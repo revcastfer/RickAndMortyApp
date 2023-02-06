@@ -1,28 +1,50 @@
 import SearchBar from './SearchBar.jsx'
 import styled from "styled-components"
-import {Outlet} from 'react-router-dom'
-import { NavLink } from "react-router-dom"
+import logo from '../images/logo.png'
 
-const Navbar=styled.div`
-position:relative;
-padding:25px;
+import { Outlet,NavLink,useLocation} from "react-router-dom"
+
+let Navbar={
+display:"flex",
+position:"relative",
+justifyContent:"flexAround",
 
 
+}
+
+const Options=styled.div`
+display:flex;
+justify-content: space-around;
+align-items:flex-start;
 `
-
-
-
+let imagen={width:"40vh"}
 
 
 export default function Nav(props){
+	let location=useLocation().pathname;
+	console.log(location);
+if(location!=="/") {
 
 return(
-<Navbar> 
+<div>
+
+<div style={Navbar}>
+<img src={logo} style={imagen} />
 <SearchBar onSearch={props.onSearch}/>
+</div>
+
+<Options>
 <NavLink to="/About">About</NavLink>
 <NavLink to="/Home">Home</NavLink>
+</Options>
 
 <hr />
 <Outlet/>
-</Navbar>
-)}
+</div>)}
+
+
+
+
+
+
+}

@@ -7,7 +7,7 @@ const contenedor={display:"flex",justifyContent:"space-around",flexWrap:"wrap"};
 export default function Cards(props) {
 const { characters } = props;
  let temp=[];
-console.log(props);
+
    function close(id){ 
       characters.map(  ele=>{ if(ele.id!==id){return temp.push(ele)} }  );
       props.close(temp)

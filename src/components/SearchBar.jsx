@@ -4,7 +4,7 @@ const Bar=styled.div`
 display:inline;
 position:absolute;
 right:20px;
-top:0px;
+top:25px;
 `
 
 const Imput=styled.input`
