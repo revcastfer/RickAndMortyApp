@@ -2,9 +2,8 @@ import styled from "styled-components"
 
 const Bar=styled.div`
 display:inline;
-position:absolute;
-right:20px;
-top:25px;
+
+
 `
 
 const Imput=styled.input`
