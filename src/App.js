@@ -24,9 +24,15 @@ const Fondo=styled.div`
 
 
 function App () {
+ const username='revcast@hotmail.com';
+ const password='P@ssw0rd';
 
+ 
+  const [access,setAccess]=useState(false);
+ 
   const [characters,setCharacters]=useState([]);
-  
+ 
+
 
   function onSearch(character) {
   
