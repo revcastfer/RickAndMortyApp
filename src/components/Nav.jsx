@@ -12,6 +12,16 @@ fontWeight: isActive? "bold" : 'normal',
 	fontSize:'20px',}	
 }
 
+const Logout=styled.span`
+position:absolute;
+color:red;
+top:0px;
+right:15px;
+font-size:20px;
+font-weight:bold;
+
+`
+
 const Navbar=styled.div`
 display:flex;
 align-items:center;
@@ -42,7 +52,7 @@ if(location!=="/") {
 
 return(
 	<div>
-
+<Logout>Logout</Logout>
 <Navbar>
 
 <img src={logo} style={imagen1} />

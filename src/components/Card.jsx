@@ -1,5 +1,7 @@
 import styled from "styled-components"
 import { NavLink } from "react-router-dom"
+import * as actions from '../redux/actions.js'
+import {useState} from 'react'
 
 
 import Rickfont from '../Fonts/get_schwifty.ttf'
@@ -81,6 +83,7 @@ padding:15px
 
 
 export default function Card(props) {
+const {isFav,setIsFav}=useState(false)
 
    return (
       <Marco>

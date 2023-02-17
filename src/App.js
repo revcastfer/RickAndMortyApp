@@ -6,8 +6,8 @@ import Cards from './components/Cards.jsx'
 //import characters, { Rick } from './data.js'
 import styled from "styled-components"
 import fondorick from "./images/wallpaperbetter.jpg"
-import  {useState} from 'react';
-import {Routes,Route} from 'react-router-dom'
+import  {useState,useEffect} from 'react';
+import {Routes,Route,useNavigate} from 'react-router-dom';
 import About from './components/About.jsx'
 import Detail from './components/Detail.jsx'
 import Form from'./components/Form.jsx'
@@ -23,19 +23,31 @@ const Fondo=styled.div`
 `
 
 
+
+ 
+
 function App () {
  const username='revcast@hotmail.com';
  const password='P@ssw0rd';
-
  
   const [access,setAccess]=useState(false);
  
   const [characters,setCharacters]=useState([]);
+  const navigate = useNavigate();
+  useEffect(() => {
+   !access && navigate('/');
+}, [access]);
+
+   let loguin=(userdata)=>{
+    if (userdata.username===username && userdata.password===password){setAccess(true); navigate("/home")}}
+
+    
  
+  
 
 
   function onSearch(character) {
-  
+
    fetch(`https://rickandmortyapi.com/api/character/${character}`)
       .then((response) => response.json())
       .then((data) => {
@@ -57,7 +69,7 @@ function App () {
 
      <Routes>
        
-         <Route path="/" element={<Form/>} /> 
+         <Route path="/" element={<Form loguin={loguin}/>} /> 
        
         <Route path="Home" element={<Cards characters={characters} close={setCharacters}/>} />  
 
